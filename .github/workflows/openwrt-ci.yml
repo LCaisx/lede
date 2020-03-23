@@ -55,6 +55,11 @@ jobs:
 
       - name: Update feeds
         run: |
+          cd package/
+          git clone https://github.com/Lienol/openwrt-package
+
+      - name: Update feeds
+        run: |
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
@@ -166,12 +171,14 @@ jobs:
           CONFIG_PACKAGE_luci-app-zerotier=y
           CONFIG_PACKAGE_luci-app-minidlna=y
           CONFIG_PACKAGE_luci-app-qbittorrent=y
+          CONFIG_PACKAGE_luci-app-passwall=y
           EOF
 
           # LuCI主题:
           cat >> .config <<EOF
           CONFIG_PACKAGE_luci-theme-argon=y
           CONFIG_PACKAGE_luci-theme-netgear=y
+          CONFIG_PACKAGE_luci-theme-argon-dark-mod=y
           EOF
 
           # 常用软件包:
